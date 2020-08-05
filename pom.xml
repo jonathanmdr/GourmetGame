@@ -11,8 +11,12 @@
     <properties>
         <java.version>11</java.version>
         <junit.version>4.12</junit.version>
-        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <lombok.version>1.18.10</lombok.version>
+        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <maven-shade-plugin.version>1.7.1</maven-shade-plugin.version>
+        <launch4j-maven-plugin.version>1.7.25</launch4j-maven-plugin.version>
+        <jre-min.version>1.8.0</jre-min.version>
+        <compiler-info.version>1.0.0.0</compiler-info.version>
     </properties>
 
     <dependencies>
@@ -36,7 +40,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -46,7 +50,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>1.7.1</version>
+                <version>${maven-shade-plugin.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -69,7 +73,7 @@
             <plugin>
                 <groupId>com.akathist.maven.plugins.launch4j</groupId>
                 <artifactId>launch4j-maven-plugin</artifactId>
-                <version>1.7.25</version>
+                <version>${launch4j-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>l4j-clui</id>
@@ -87,16 +91,16 @@
                                 <preCp>anything</preCp>
                             </classPath>
                             <jre>
-                                <minVersion>1.8.0</minVersion>
+                                <minVersion>${jre-min.version}</minVersion>
                                 <jdkPreference>preferJre</jdkPreference>
                             </jre>
                             <versionInfo>
-                                <fileVersion>1.0.0.0</fileVersion>
+                                <fileVersion>${compiler-info.version}</fileVersion>
                                 <txtFileVersion>${project.version}</txtFileVersion>
                                 <fileDescription>${project.name}</fileDescription>
                                 <copyright>2020 ${artifactId}</copyright>
-                                <productVersion>1.0.0.0</productVersion>
-                                <txtProductVersion>1.0.0.0</txtProductVersion>
+                                <productVersion>${compiler-info.version}</productVersion>
+                                <txtProductVersion>${compiler-info.version}</txtProductVersion>
                                 <productName>${project.name}</productName>
                                 <companyName>${artifactId}</companyName>
                                 <internalName>${artifactId}</internalName>
