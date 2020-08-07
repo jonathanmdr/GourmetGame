@@ -21,21 +21,21 @@ public class GameImplTest {
     public void validateBinaryTreeRootIsEqualToMassa() {
         GameImpl game = this.game;
 
-        Assert.assertEquals("massa", game.getBinaryTree().getRoot().getValue());
+        Assert.assertEquals("massa", game.getRoot().getValue());
     }
 
     @Test
     public void validateBinaryTreeLeftNoEqualToLasanha() {
         GameImpl game = this.game;
 
-        Assert.assertEquals("Lasanha", game.getBinaryTree().getRoot().getLeftNo().getValue());
+        Assert.assertEquals("Lasanha", game.getRoot().getLeftNode().getValue());
     }
 
     @Test
     public void validateBinaryTreeRightNoEqualToBoloDeChocolate() {
         GameImpl game = this.game;
 
-        Assert.assertEquals("Bolo de Chocolate", game.getBinaryTree().getRoot().getRightNo().getValue());
+        Assert.assertEquals("Bolo de Chocolate", game.getRoot().getRightNode().getValue());
     }
 
 }
