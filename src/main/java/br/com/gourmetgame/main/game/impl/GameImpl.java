@@ -15,8 +15,8 @@ public class GameImpl implements Game {
         this.message = message;
 
         this.root = new Node("massa");
-        this.root.setLeftNode(new Node("Lasanha"));
-        this.root.setRightNode(new Node("Bolo de Chocolate"));
+        this.root.setLeftChild(new Node("Lasanha"));
+        this.root.setRightChild(new Node("Bolo de Chocolate"));
     }
 
     @Override
@@ -28,7 +28,7 @@ public class GameImpl implements Game {
 
             if (!closeGame) {
                 boolean answer = message.ask(String.format("O prato que você pensou é %s?", root.getValue()), "Confirm");
-                Node node = answer ? root.getLeftNode() : root.getRightNode();
+                Node node = answer ? root.getLeftChild() : root.getRightChild();
 
                 guessDish(node);
             }
@@ -41,31 +41,32 @@ public class GameImpl implements Game {
 
         if (answer) {
 
-            if (node.hasRight()) {
-                guessDish(node.getRightNode());
+            if (node.hasRightChild()) {
+                guessDish(node.getRightChild());
             } else {
                 message.inform("Acertei de novo!", "Jogo Gourmet");
             }
 
         } else {
 
-            if (node.hasLeft()) {
-                guessDish(node.getLeftNode());
+            if (node.hasLeftChild()) {
+                guessDish(node.getLeftChild());
             } else {
                 String dish = message.getInformation("Qual prato você pensou?");
                 String feature = message.getInformation(String.format("%s é ______ mas %s não", dish, node.getValue()));
 
-                insertNo(node, dish, feature);
+                insertNode(node, dish, feature);
             }
 
         }
     }
 
-    private void insertNo(Node node, String answer, String feature) {
-        String tempValue = node.getValue();
+    private void insertNode(Node node, String answer, String feature) {
+        String oldValue = node.getValue();
+
         node.setValue(feature);
-        node.setLeftNode(new Node(tempValue));
-        node.setRightNode(new Node(answer));
+        node.setLeftChild(new Node(oldValue));
+        node.setRightChild(new Node(answer));
     }
 
 }

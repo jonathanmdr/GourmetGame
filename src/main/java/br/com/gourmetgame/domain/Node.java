@@ -7,20 +7,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Node {
 
-    private Node leftNode;
-    private Node rightNode;
+    private Node leftChild;
+    private Node rightChild;
     private String value;
 
     public Node(String value) {
         this.value = value;
     }
 
-    public boolean hasLeft() {
-        return this.leftNode != null;
+    public boolean hasLeftChild() {
+        return this.leftChild != null;
     }
 
-    public boolean hasRight() {
-        return this.rightNode != null;
+    public boolean hasRightChild() {
+        return this.rightChild != null;
     }
 
 }
