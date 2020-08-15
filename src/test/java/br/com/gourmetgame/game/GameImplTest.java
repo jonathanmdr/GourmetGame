@@ -18,17 +18,17 @@ public class GameImplTest {
     }
 
     @Test
-    public void validateBinaryTreeRootIsEqualToMassa() {
+    public void validateBinaryTreeRootIsEqualsToMassa() {
         Assert.assertEquals("massa", this.game.getRoot().getValue());
     }
 
     @Test
-    public void validateBinaryTreeLeftNoEqualToLasanha() {
+    public void validateBinaryTreeLeftChildNodeEqualsToLasanha() {
         Assert.assertEquals("Lasanha", this.game.getRoot().getLeftChild().getValue());
     }
 
     @Test
-    public void validateBinaryTreeRightNoEqualToBoloDeChocolate() {
+    public void validateBinaryTreeRightChildNodeEqualsToBoloDeChocolate() {
         Assert.assertEquals("Bolo de Chocolate", this.game.getRoot().getRightChild().getValue());
     }
 
