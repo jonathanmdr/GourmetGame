@@ -1,5 +1,7 @@
 package br.com.gourmetgame.main.game.impl;
 
+import static java.lang.String.format;
+
 import br.com.gourmetgame.core.message.Message;
 import br.com.gourmetgame.domain.Node;
 import br.com.gourmetgame.main.game.Game;
@@ -8,13 +10,14 @@ import lombok.Getter;
 public class GameImpl implements Game {
 
     @Getter
-    private Node root;
-    private Message message;
+    private final Node root;
+    private final Message message;
 
-    public GameImpl(Message message) {
+    public GameImpl(Node root, Message message) {
+        this.root = root;
         this.message = message;
 
-        this.root = new Node("massa");
+        this.root.setValue("massa");
         this.root.setLeftChild(new Node("Lasanha"));
         this.root.setRightChild(new Node("Bolo de Chocolate"));
     }
@@ -27,7 +30,7 @@ public class GameImpl implements Game {
             closeGame = message.informStart("Pense em um prato que gosta", "Jogo Gourmet");
 
             if (!closeGame) {
-                boolean answer = message.ask(String.format("O prato que você pensou é %s?", root.getValue()), "Confirm");
+                boolean answer = askingDish(root);
                 Node node = answer ? root.getLeftChild() : root.getRightChild();
 
                 guessDish(node);
@@ -37,7 +40,7 @@ public class GameImpl implements Game {
     }
 
     private void guessDish(Node node) {
-        boolean answer = message.ask(String.format("O prato que você pensou é %s?", node.getValue()), "Confirm");
+        boolean answer = askingDish(node);
 
         if (answer) {
 
@@ -53,7 +56,7 @@ public class GameImpl implements Game {
                 guessDish(node.getLeftChild());
             } else {
                 String dish = message.getInformation("Qual prato você pensou?");
-                String feature = message.getInformation(String.format("%s é ______ mas %s não", dish, node.getValue()));
+                String feature = message.getInformation(format("%s é ______ mas %s não", dish, node.getValue()));
 
                 insertNode(node, dish, feature);
             }
@@ -67,6 +70,10 @@ public class GameImpl implements Game {
         node.setValue(feature);
         node.setLeftChild(new Node(oldValue));
         node.setRightChild(new Node(answer));
+    }
+
+    private boolean askingDish(Node node) {
+        return message.ask(format("O prato que você pensou é %s?", node.getValue()), "Confirm");
     }
 
 }

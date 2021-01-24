@@ -5,36 +5,38 @@ import org.junit.Test;
 
 public class NodeTest {
 
+    private Node subject;
+
     @Test
     public void hasLeftChildEqualsTrue() {
-        Node node = new Node("massa");
-        node.setLeftChild(new Node("Lasanha"));
+        subject = new Node("massa");
+        subject.setLeftChild(new Node("Lasanha"));
 
-        Assert.assertTrue(node.hasLeftChild());
+        Assert.assertTrue(subject.hasLeftChild());
     }
 
     @Test
     public void hasLeftChildEqualsFalse() {
-        Node node = new Node("massa");
-        node.setLeftChild(null);
+        subject = new Node("massa");
+        subject.setLeftChild(null);
 
-        Assert.assertFalse(node.hasLeftChild());
+        Assert.assertFalse(subject.hasLeftChild());
     }
 
     @Test
     public void hasRightChildEqualsTrue() {
-        Node node = new Node("massa");
-        node.setRightChild(new Node("Bolo de chocolate"));
+        subject = new Node("massa");
+        subject.setRightChild(new Node("Bolo de chocolate"));
 
-        Assert.assertTrue(node.hasRightChild());
+        Assert.assertTrue(subject.hasRightChild());
     }
 
     @Test
     public void hasRightChildEqualsFalse() {
-        Node node = new Node();
-        node.setRightChild(null);
+        subject = new Node();
+        subject.setRightChild(null);
 
-        Assert.assertFalse(node.hasRightChild());
+        Assert.assertFalse(subject.hasRightChild());
     }
 
 }
